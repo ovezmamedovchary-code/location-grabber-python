@@ -1,0 +1,17 @@
+import requests
+
+username = input("Enter your username: ")
+url = f"https://www.tiktok.com/@{username}"
+
+# TikTok'u kandırmak için 'header' ekliyoruz
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
+}
+
+response = requests.get(url, headers=headers)
+
+if response.status_code == 200:
+    print(f"User '{username}' exists on TikTok.")
+else:
+    # 404 hatası gerçekten yok demektir, ama diğer hatalar engellendiğin anlamına gelir
+    print(f"User '{username}' could not be verified (Status: {response.status_code})")
